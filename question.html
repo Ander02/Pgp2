@@ -1,12 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Feedback System</title>
+    <title>Questionário</title>
+    <link rel="stylesheet" href="./css/lib/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/core.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="./js/lib/bootstrap.min.js"></script>
 </head>
+
 <body>
-        
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">PGP</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
+            aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Questões</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="user">
+                            <i class="fas fa-user"></i>
+                            <span>Nome do usuário</span>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="index.html">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <section id="questionario">
+        <div class="carousel-question">
+            <button class="btn btn-link" data-slide="prev">
+                Previous
+            </button>
+            <div class="wrap">
+                <h1>Avaliação do Sistema</h1>
+                <div class="jumbotron">
+                    <p></p>
+                </div>
+            </div>
+            <button class="btn btn-link" data-slide="next">
+                Right
+            </button>
+        </div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Nota</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </section>
+    <script>
+        const question = $('#questionario');
+        let buttons = question.find('.carousel-question .btn-link');
+        const names = ['Ricardo', 'Fred', 'Ana', 'Lis'];
+
+        const tableName = $('.table tbody');
+        let tableStar = $('.table .atualizar .stars');
+
+        names.forEach(item => {
+            let template = `
+                <tr class="names">
+                    <td>${item}</td>
+                    <td class="atualizar">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </td>
+                </tr>
+                `;
+            tableName.append(template);
+        });
+
+        const Questions = [{
+            question: 'De 1 a 5, sendo 1 muito curta, 3 ideal e 5 muito extensa, qual a nota que você dá para a duração da pesquisa?'
+        }, {
+            question: 'De 1 a 5, sendo 1 pouco relevante e 5 muito relevante, como você classifica a importância da pesquisa?'
+        }, {
+            question: 'De 1 a 5, sendo 1 pouco fluída e difícil e 5 muito fluída e fácil, como você classifica a navegação na pesquisa?'
+        }, {
+            question: ' Você tem alguma outra pergunta ou ponto de atenção interessante para ser adicionado/relatado à pesquisa?'
+        }];
+
+        let wrapQ = $('.jumbotron');
+
+        Questions.forEach((item, index) => {
+            wrapQ.find('p:last-of-type').text(item.question);
+            let clone = wrapQ.find('p:first-of-type').clone();
+            if (index != 0 && index < 4) {
+                clone.appendTo(wrapQ);
+            };
+        });
+
+        wrapQ.find('p:first-of-type').addClass('active');
+
+        buttons.on('click', function () {
+            let item = wrapQ.find('.active');
+            switch (this.dataset.slide) {
+                case 'prev':
+                    item.removeClass('active');
+                    if (item.prev().length === 0) {
+                        item.siblings('p:last').addClass('active');
+                    } else {
+                        item.prev().addClass('active');
+                    }
+                    break;
+                case 'next':
+                    item.removeClass('active');
+                    if (item.next().length === 0) {
+                        item.siblings('p:first').addClass('active');
+                    } else {
+                        item.next().addClass('active');
+                    }
+                    break;
+            }
+        });
+    </script>
 </body>
+
 </html>

@@ -30,8 +30,29 @@
     align-items: center;
 }
 
+#login {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
 .card.bg-lightseagreen {
     background-color: lightseagreen;
+    width: 45%;
+    margin-top: 30px;
+    margin-bottom: auto;
+}
+
+.card.bg-lightseagreen .card-body {
+    color: white;
+}
+
+.card.bg-lightseagreen .card-body .btn {
+    margin-left: auto;
+    display: flex;
 }
 
 #cards {
@@ -100,4 +121,49 @@
 #perfil .panel .plus::after {
     height: 100%;
     width: 2px;
+}
+
+#questionario {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+}
+
+#questionario .carousel-question {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#questionario .carousel-question .wrap {
+    width: 100%;
+}
+
+#questionario .carousel-question h1 {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#questionario .carousel-question .jumbotron {
+    position: relative;
+}
+
+#questionario .carousel-question .jumbotron p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    transform: translate(-50%, -50%);
+    visibility: hidden;
+    opacity: 0;
+    transition: all .25s ease-in-out;
+}
+
+#questionario .carousel-question .jumbotron p.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+#questionario .carousel-question .btn {
+    margin-top: 20px;
 }
