@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Questões</title>
+    <link rel="stylesheet" href="./css/lib/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="./js/lib/bootstrap.min.js"></script>
+</head>
+<style>
+    .navbar {
+        background-color: lightseagreen;
+    }
+
+    .navbar .navbar-brand {
+        color: white;
+    }
+
+    .navbar-nav {
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+
+    .navbar-nav .nav-item .nav-link,
+    .navbar-nav .nav-item.active .nav-link {
+        color: white;
+    }
+
+    .navbar-nav .nav-item.active .nav-link {
+        font-weight: bold;
+    }
+
+    .navbar-nav .nav-item.dropdown {
+        margin-left: auto;
+    }
+
+    .navbar-nav .nav-item.dropdown > .nav-link {
+        display: flex;
+        align-items: center;
+    }
+
+    #cards {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    #cards .card {
+        width: 30%;
+        margin: 20px;
+    }
+
+    #cards .card .card-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+</style>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">PGP</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Questões</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <div class="user">
+                            <i class="fas fa-user"></i>
+                            <span>Nome do usuário</span>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <section id="cards"></section>
+    <script>       
+        let section = $('#cards');
+        
+        const Props = [{
+            title: 'Projetos e metas',
+            currentQ: 10,
+            maxQ: 10
+        }, {
+            title: 'Produtividade',
+            currentQ: 5,
+            maxQ: 10
+        }, {
+            title: 'Trabalho em equipe',
+            currentQ: 0,
+            maxQ: 10
+        }, {
+            title: 'Liderança',
+            currentQ: 0,
+            maxQ: 10
+        },{
+            title: 'Avalie a pesquisa',
+            currentQ: 0,
+            maxQ: 10
+        }];
+        
+        Props.forEach(item => {
+            let template = `
+            <div class="card">
+                <div class="card-image-top"><i class="fas fa"></i></div>
+                <div class="card-body">
+                    <h5 class="card-title">${item.title}</h5>
+                    <p class="card-text">${item.currentQ} / ${item.maxQ}</p>
+                    <a href="#" class="btn btn-primary">Ver</a>
+                </div>
+            </div>
+            `;
+            section.append(template);
+        });
+    </script>
+</body>
+</html>
