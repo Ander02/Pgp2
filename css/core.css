@@ -167,3 +167,12 @@
 #questionario .carousel-question .btn {
     margin-top: 20px;
 }
+
+#questionario .table tbody i {
+    cursor: pointer;
+}
+
+#questionario .table tbody i.active,
+#questionario .table tbody i.active-click {
+    color: gold;
+}

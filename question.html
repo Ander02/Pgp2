@@ -15,6 +15,8 @@
         integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
     <script src="./js/lib/bootstrap.min.js"></script>
+    <script src="./js/fontawelsome.js"></script>
+    <script src="https://kit.fontawesome.com/5bdfdc5355.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -48,7 +50,7 @@
     <section id="questionario">
         <div class="carousel-question">
             <button class="btn btn-link" data-slide="prev">
-                Previous
+                <i class="fas fa-chevron-left"></i>
             </button>
             <div class="wrap">
                 <h1>Avaliação do Sistema</h1>
@@ -57,7 +59,7 @@
                 </div>
             </div>
             <button class="btn btn-link" data-slide="next">
-                Right
+                <i class="fas fa-chevron-right"></i>
             </button>
         </div>
         <table class="table table-hover">
@@ -78,7 +80,6 @@
         const names = ['Ricardo', 'Fred', 'Ana', 'Lis'];
 
         const tableName = $('.table tbody');
-        let tableStar = $('.table .atualizar .stars');
 
         names.forEach(item => {
             let template = `
@@ -140,6 +141,34 @@
                     }
                     break;
             }
+        });
+
+        let tableStar = $('.table .atualizar .stars');
+
+        let boolean = true;
+
+        tableStar.find('i').on('mouseover', function(){
+            let item = $(this);
+            item.addClass('active');
+            item.prevAll().addClass('active');
+        });
+
+        tableStar.find('i').on('click', function(){
+            let item = $(this);
+            if (!item.hasClass('active-click')) {
+                item.addClass('active-click');
+                item.prevAll().addClass('active-click');
+            } else {
+                item.removeClass('active-click');
+                item.prevAll().removeClass('active-click');
+                item.nextAll().removeClass('active-click');
+            }
+        })
+
+        tableStar.find('i').on('mouseleave', function(){
+            let item = $(this);
+            item.removeClass('active');
+            item.prevAll().removeClass('active');
         });
     </script>
 </body>
