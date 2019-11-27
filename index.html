@@ -8,35 +8,38 @@
     <title>Feedback System</title>
     <link rel="stylesheet" href="css/lib/bootstrap.min.css">
     <link rel="stylesheet" href="./css/core.css">
-    
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-    crossorigin="anonymous"></script>
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
     <script src="./js/lib/bootstrap.min.js"></script>
     <script src="./js/fontawelsome.js"></script>
     <script src="https://kit.fontawesome.com/5bdfdc5355.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
-    <section id="login">
-        <div class="card bg-lightseagreen">
-            <div class="card-body">
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Endereço de email</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                    placeholder="Email">
+    <div class="wrap-login">
+        <div class="uma-div"></div>
+        <section id="login">
+            <div class="card bg-lightseagreen">
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Endereço de email</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Senha</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
+                    </div>
+                    <button onclick="window.location.href = './question.html'" class="btn btn-primary">Enviar</button>
                 </div>
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Senha</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
-                </div>
-                <button onclick="window.location.href = './cards.html'" class="btn btn-primary">Enviar</button>
             </div>
-        </div>
-    </section>
+        </section>
+    </div>
 </body>
 
 </html>

@@ -21,7 +21,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light">
-        <a class="navbar-brand" href="#">PGP</a>
+        <a class="navbar-brand" href="question.html">PGP</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
             aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
             <span class="navbar-toggler-icon"></span>
@@ -30,7 +30,7 @@
         <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Questões</a>
+                    <a class="nav-link" href="question.html">Questões</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -41,26 +41,27 @@
                         </div>
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="index.html">Logout</a>
+                        <a class="dropdown-item" href="perfil.html">
+                            <i class="fas fa-user"></i>
+                            <span>Perfil</span>
+                        </a>
+                        <a class="dropdown-item" href="index.html">
+                            <i class="fas fa-power-off"></i>
+                            <span>Logout</span>
+                        </a>
                     </div>
                 </li>
             </ul>
         </div>
     </nav>
     <section id="questionario">
-        <div class="carousel-question">
-            <button class="btn btn-link" data-slide="prev">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            <div class="wrap">
-                <h1>Avaliação do Sistema</h1>
-                <div class="jumbotron">
-                    <p></p>
-                </div>
+        <nav>
+            <div class="nav nav-tabs" id="tabQuestions" role="tablist">
+
             </div>
-            <button class="btn btn-link" data-slide="next">
-                <i class="fas fa-chevron-right"></i>
-            </button>
+        </nav>
+        <div class="tab-content" id="tabContents">
+            
         </div>
         <table class="table table-hover">
             <thead>
@@ -76,15 +77,16 @@
     </section>
     <script>
         const question = $('#questionario');
-        let buttons = question.find('.carousel-question .btn-link');
-        const names = ['Ricardo', 'Fred', 'Ana', 'Lis'];
+        const names = ['Ricardo', 'Gustavo', 'Anderson', 'Victor', 'Caio'].sort();
+        const tabNavs = $('#tabQuestions');
+        const tabCont = $('#tabContents');
 
         const tableName = $('.table tbody');
 
         names.forEach(item => {
             let template = `
                 <tr class="names">
-                    <td>${item}</td>
+                    <td><a href="perfil.html">${item}</a></td>
                     <td class="atualizar">
                         <div class="stars">
                             <i class="fas fa-star"></i>
@@ -99,30 +101,154 @@
             tableName.append(template);
         });
 
+        const Avaliacoes = [{
+            title: 'Relacionamento com a equipe',
+            id: 1
+        }, {
+            title: 'Atuação técnica e Proatividade',
+            id: 2
+        }, {
+            title: 'Avaliação do Sistema',
+            id: 3
+        }, {
+            title: 'Avaliação de Liderança',
+            id: 4
+        }];
+
+        Avaliacoes.forEach(item => {
+            let templateTab = `
+            <a href="#item-${item.id}" class="nav-item nav-link" role="tab" data-toggle="tab" aria-controls="item-${item.id}" aria-selected="false">${item.title}</a>
+            `;
+            let templateContent = `
+            <div class="tab-pane fade" id="item-${item.id}">
+                <div class="carousel-question">
+                    <button class="btn btn-link" data-slide="prev">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <div class="wrap">
+                        <h1>${item.title}</h1>
+                        <div class="jumbotron">
+                            <p></p>
+                        </div>
+                    </div>
+                    <button class="btn btn-link" data-slide="next">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+            `;
+            tabNavs.append(templateTab);
+            tabCont.append(templateContent);
+        });
+
+        let buttons = question.find('.carousel-question .btn-link');
+
         const Questions = [{
-            question: 'De 1 a 5, sendo 1 muito curta, 3 ideal e 5 muito extensa, qual a nota que você dá para a duração da pesquisa?'
+            question: 'Qual nota você dá, de 1 a 5, para os membros da equipe no quesito respeito com os colegas, independente da hierarquia?',
+            id: 1
         }, {
-            question: 'De 1 a 5, sendo 1 pouco relevante e 5 muito relevante, como você classifica a importância da pesquisa?'
+            question: 'O colaborador causa conflitos entre os colegas de equipe?',
+            id: 1
         }, {
-            question: 'De 1 a 5, sendo 1 pouco fluída e difícil e 5 muito fluída e fácil, como você classifica a navegação na pesquisa?'
+            question: 'De 1 a 5, quão conciliador os membros da equipe são nos conflitos que podem surgir entre os colegas de equipe?',
+            id: 1
         }, {
-            question: ' Você tem alguma outra pergunta ou ponto de atenção interessante para ser adicionado/relatado à pesquisa?'
+            question: 'De 1 a 5, o quanto você enxerga os membros da equipe como uma referência positiva para os outros membros da equipe.',
+            id: 1
+        }, {
+            question: 'De 1 a 5, qual a nota que você dá para o colega x para a atuação nas atividades da equipe?',
+            id: 1
+        }, {
+            question: 'De 1 a 5, o quanto colaborativo você considera os membros da equipe? (Ou seja, o colega presta ajuda a outros membros da equipe, mesmo que essa ajuda não seja considerada em suas metas individuais)',
+            id: 1
+        }, {
+            question: 'Em uma escala de 1 a 5, qual nota você dá para cada membro da equipe no quesito técnico?',
+            id: 2
+        }, {
+            question: 'Em uma escala de 1 a 5, o quanto você considera que seus colegas agem de maneira crítica em relação às atividades propostas ou realizadas?',
+            id: 2
+        }, {
+            question: 'Em uma escala de 1 a 5, o quanto você considera seu colega engajado com os projetos que ele participa e com os objetivos da organização?',
+            id: 2
+        }, {
+            question: 'Em uma escala de 1 a 5, o quanto você considera seus colegas inovadores.?',
+            id: 2
+        }, {
+            question: 'Em uma escala de 1 a 5, o quanto você considera que seus colegas conseguem evitar que conflitos e outras questões pessoais com outros colegas influenciem negativamente sua atuação profissional?',
+            id: 2
+        }, {
+            question: 'Em uma escala de 1 a 5, o quanto você considera que seus colegas evitam privilegiar trabalhos/ajuda para pessoas com quem possui maior afinidade.',
+            id: 2
+        }, {
+            question: 'De 1 a 5, sendo 1 muito curta, 3 ideal e 5 muito extensa, qual a nota que você dá para a duração da pesquisa?',
+            id: 3
+        }, {
+            question: 'De 1 a 5, sendo 1 pouco relevante e 5 muito relevante, como você classifica a importância da pesquisa?',
+            id: 3
+        }, {
+            question: 'De 1 a 5, sendo 1 pouco fluída e difícil e 5 muito fluída e fácil, como você classifica a navegação na pesquisa?',
+            id: 3
+        }, {
+            question: 'Você tem alguma outra pergunta ou ponto de atenção interessante para ser adicionado/relatado à pesquisa?',
+            id: 3
+        }, {
+            question: 'Em uma escala de 1 a 5, o quanto você considera que a gestão age de maneira tempestiva a fim de mediar conflitos e reparar eventuais injustiças?',
+            id: 4
+        }, {
+            question: 'Em uma escala de 1 a 5, o quanto você considera efetivas as ações da gestão no que diz respeito a zelar por um bom clima da equipe?',
+            id: 4
+        }, {
+            question: 'Em uma escala de 1 a 5, quanto que você considera que a gestão contribui para um clima melhor na equipe?',
+            id: 4
+        }, {
+            question: 'Em uma escala de 1 a 5, o quanto você considera que a gestão trata seus membros de maneira igual, independente de cargo ou afinidade pessoal?',
+            id: 4
+        }, {
+            question: 'Em uma escala de 1 a 5, o quanto você considera que as ações da gestão prejudicam o andamento dos projetos?',
+            id: 4
+        }, {
+            question: 'Em uma escala de 1 a 5, o quanto você considera que a gestão incentiva os colaboradores a propor e executar novas ideias, ser inovador?',
+            id: 4
+        }, {
+            question: 'Em uma escala de 1 a 5, o quanto você considera que a gestão consegue aprender com os erros ?',
+            id: 4
+        }, {
+            question: 'Em uma escala de 1 a 5, avalie o quanto satisfatórias você considera as ações da gestão perante a situações adversas?',
+            id: 4
+        }, {
+            question: 'Em uma escala de 1 a 5, o quanto você considera que a cobrança vinda da gestão é saudável e respeitosa.',
+            id: 4
         }];
 
         let wrapQ = $('.jumbotron');
 
-        Questions.forEach((item, index) => {
-            wrapQ.find('p:last-of-type').text(item.question);
-            let clone = wrapQ.find('p:first-of-type').clone();
-            if (index != 0 && index < 4) {
-                clone.appendTo(wrapQ);
-            };
+        Avaliacoes.forEach((item, index) => {
+            let compare = $(wrapQ.siblings('h1')[index]);
+            if (item.title === compare.text()) {
+                compare = compare.siblings('.jumbotron');
+                let filter = Questions.filter(value => {
+                    return value.id === (index + 1);
+                });
+                filter.forEach((data, iterador) => {
+                    compare.find('p:last-of-type').text(data.question);
+                    let clone = compare.find('p:first-of-type').clone();
+                    clone.appendTo(compare);
+                });
+            }
         });
 
         wrapQ.find('p:first-of-type').addClass('active');
+        wrapQ.find('p:last-of-type').remove();
+
+        tabNavs.find('.nav-item:first-child').addClass('active');
+        tabNavs.find('.nav-item:first-child').attr('aria-selected', true);
+
+        tabCont.find('.tab-pane:first-child').addClass('show active');
+
+        let tableStar = $('.table .atualizar .stars');
 
         buttons.on('click', function () {
-            let item = wrapQ.find('.active');
+            let item = $(this).siblings('.wrap').find('.jumbotron').find('.active');
             switch (this.dataset.slide) {
                 case 'prev':
                     item.removeClass('active');
@@ -141,19 +267,16 @@
                     }
                     break;
             }
+            tableStar.find('i').removeClass('active-click');
         });
 
-        let tableStar = $('.table .atualizar .stars');
-
-        let boolean = true;
-
-        tableStar.find('i').on('mouseover', function(){
+        tableStar.find('i').on('mouseover', function () {
             let item = $(this);
             item.addClass('active');
             item.prevAll().addClass('active');
         });
 
-        tableStar.find('i').on('click', function(){
+        tableStar.find('i').on('click', function () {
             let item = $(this);
             if (!item.hasClass('active-click')) {
                 item.addClass('active-click');
@@ -165,7 +288,7 @@
             }
         })
 
-        tableStar.find('i').on('mouseleave', function(){
+        tableStar.find('i').on('mouseleave', function () {
             let item = $(this);
             item.removeClass('active');
             item.prevAll().removeClass('active');

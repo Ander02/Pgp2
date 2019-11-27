@@ -30,6 +30,21 @@
     align-items: center;
 }
 
+.wrap-login {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.uma-div {
+    height: 45vh;
+    width: 100vw;
+    background-color: #393939;
+    position: absolute;
+}
+
 #login {
     height: 100vh;
     width: 100vw;
@@ -41,9 +56,10 @@
 
 .card.bg-lightseagreen {
     background-color: lightseagreen;
-    width: 45%;
-    margin-top: 30px;
+    width: 400px;
+    margin-top: 100px;
     margin-bottom: auto;
+    box-shadow: 0 5px 13px -4px #acacac;
 }
 
 .card.bg-lightseagreen .card-body {
@@ -53,6 +69,19 @@
 .card.bg-lightseagreen .card-body .btn {
     margin-left: auto;
     display: flex;
+    width: 100%;
+    justify-content: center;
+    background-color: #393939;
+    border-color: #393939;
+}
+
+.card.bg-lightseagreen .card-body .btn:hover,
+.card.bg-lightseagreen .card-body .btn:active,
+.card.bg-lightseagreen .card-body .btn:visited,
+.card.bg-lightseagreen .card-body .btn:focus {
+    background-color: #393939;
+    border-color: #393939;
+    box-shadow: unset;
 }
 
 #cards {
@@ -165,7 +194,7 @@
 }
 
 #questionario .carousel-question .btn {
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 #questionario .table tbody i {
@@ -175,4 +204,12 @@
 #questionario .table tbody i.active,
 #questionario .table tbody i.active-click {
     color: gold;
+}
+
+#questionario nav {
+    margin-bottom: 20px;
+}
+
+body a[href] {
+    color: lightseagreen;
 }
