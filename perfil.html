@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,24 +9,40 @@
     <link rel="stylesheet" href="./css/lib/bootstrap.min.css">
     <link rel="stylesheet" href="./css/core.css">
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
     <script src="./js/lib/bootstrap.min.js"></script>
+
+    <!-- High Charts -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+    <!-- Font awelsome -->
+    <script src="./js/fontawelsome.js"></script>
+    <script src="https://kit.fontawesome.com/5bdfdc5355.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-light">
         <a class="navbar-brand" href="#">PGP</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado"
+            aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
             <span class="navbar-toggler-icon"></span>
         </button>
-        
+
         <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Questões</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="user">
                             <i class="fas fa-user"></i>
                             <span>Nome do usuário</span>
@@ -42,45 +59,50 @@
     <section id="perfil">
         <div class="card card-left">
             <div class="card-image">
-                
+
             </div>
             <div class="card-body">
                 <h3>Nome do Usuário</h3>
-                <span class="card-text"><b>Cargo:</b></span>
-                <span class="card-text"><b>Média Geral:</b></span>
+                <p>
+                    <span class="card-text"><b>Cargo: Desenvolvedor</b></span>
+                </p>
+                <p>
+                    <span class="card-text"><b>Média Geral:</b>
+                        <i class="fas fa-star" style="color: gold;"></i>
+                        <i class="fas fa-star" style="color: gold;"></i>
+                        <i class="fas fa-star" style="color: gold;"></i>
+                        <i class="fas fa-star" style="color: gold;"></i>
+                    </span>
+                </p>
             </div>
         </div>
         <div class="panel panel-right">
             <div class="panel-body">
                 <div class="accordion" id="accordionQ">
-                    
+
                 </div>
             </div>
         </div>
         <script>
             const accordion = $('#accordionQ');
             const Props = [{
-                title: 'Projetos e metas',
-                currentQ: 10,
-                maxQ: 10
+                id: 1,
+                title: 'Relacionamento com a Equipe',
+                questions: 6
             }, {
-                title: 'Produtividade',
-                currentQ: 5,
-                maxQ: 10
+                id: 2,
+                title: 'Atuação técninca e Produtividade',
+                questions: 6,
             }, {
-                title: 'Trabalho em equipe',
-                currentQ: 0,
-                maxQ: 10
+                id: 3,
+                title: 'Sistema',
+                questions: 4,
             }, {
+                id: 4,
                 title: 'Liderança',
-                currentQ: 0,
-                maxQ: 10
-            },{
-                title: 'Avalie a pesquisa',
-                currentQ: 0,
-                maxQ: 10
+                questions: 9,
             }];
-            
+
             Props.forEach((item, index) => {
                 let template = `
                 <div class="card">
@@ -95,14 +117,58 @@
                     
                     <div id="collapse${index}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionQ">
                         <div class="card-body">
-                            
+                            <div id="container-${item.id}" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
                         </div>
                     </div>
                 </div>
                 `;
                 accordion.append(template);
+
+                var list = [];
+                for (let i = 0; i < item.questions; i++)
+                    list.push(`Questão ${i + 1}`);
+
+                Highcharts.chart(`container-${item.id}`, {
+                    chart: {
+                        type: 'column'
+                    },
+                    title: {
+                        text: `${item.title}`
+                    },
+                    xAxis: {
+                        categories: list,
+                        crosshair: true
+                    },
+                    yAxis: {
+                        min: 0,
+                        title: {
+                            text: 'Número de votos'
+                        }
+                    },
+                    tooltip: {
+                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                            '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+                        footerFormat: '</table>',
+                        shared: true,
+                        useHTML: true
+                    },
+                    plotOptions: {
+                        column: {
+                            pointPadding: 0.3,
+                            borderWidth: 0
+                        }
+                    },
+                    series: [1, 2, 3, 4, 5].map((value) => {
+                        return {
+                            name: `${value} <i class="fas fa-star"></i>`,
+                            data: list.map(() => Math.ceil(Math.random() * 100))
+                        }
+                    })
+                });
             });
         </script>
     </section>
 </body>
+
 </html>
