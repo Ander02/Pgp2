@@ -68,12 +68,14 @@
                 <tr>
                     <th>Nome</th>
                     <th>Nota</th>
+                    <th>Observação</th>
                 </tr>
             </thead>
             <tbody>
-
+                
             </tbody>
         </table>
+        <button type="button" class="btn btn-lg btn-success">Salvar</button>
     </section>
     <script>
         const question = $('#questionario');
@@ -96,6 +98,7 @@
                             <i class="fas fa-star"></i>
                         </div>
                     </td>
+                    <td><input class="form-control" type="text" name="input-text" id="input-text"></td>
                 </tr>
                 `;
             tableName.append(template);
